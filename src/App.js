@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import SearchBar from './components/SearchBar';
 import ListTable from './components/ListTable';
 import Header from './components/Header';
+import MovieDetail from './components/MovieDetail';
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -73,41 +75,39 @@ function App() {
   
   }
 
-  function MovieDetail(props){
+  function Home(props){
     return (
-        <div>
-          <h2>MovieDetail Page</h2>
-        </div>
+        <section className="container">
+           <Header />
+           <SearchBar search={search} />
+           <ListTable items={items} />
+        </section>
       );
   }
+
   return (
-     <section className="container">
       <Router>
         <div>
           <nav>
             <ul>
-            
-              <li>
-                <Link to="/MovieDetail">MovieDetail</Link>
-              </li>
+             <li>
+               <Link to="/">Home</Link>
+             </li>
             </ul>
           </nav>
 
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
           <Switch>
-            <Route path="/MovieDetail">
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/moviedetail">
               <MovieDetail />
             </Route>
-            
           </Switch>
         </div>
       </Router>
-
-       <Header />
-       <SearchBar search={search} />
-       <ListTable items={items} />
-     </section>
   );
 }
 
